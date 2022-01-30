@@ -2,6 +2,8 @@
 
 This application ranks **students** according to their average **marks**.
 
+(Bubble Sort method)
+
 
 
 :brazil:
@@ -10,3 +12,4 @@ This application ranks **students** according to their average **marks**.
 
 Aplicação que classifica **alunos** de acordo com suas respectivas **médias**.
 
+(Método Bolha)
