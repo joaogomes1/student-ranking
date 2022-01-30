@@ -1,8 +1,6 @@
-:us:
+### Student ranking :trophy:
 
-### Student ranks :trophy:
-
-Application that ranks **students** according to their average **marks**.
+This application ranks **students** according to their average **marks**.
 
 
 
