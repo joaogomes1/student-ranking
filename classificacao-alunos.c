@@ -3,12 +3,14 @@
 #include <string.h>
 #include <locale.h>
 
-struct cadastroAlunos {
+# define MAX_NOTAS 2
+# define MAX_ALUNOS 3
 
+struct cadastroAlunos {
     char nome[20];
-    float nota[4];
+    float nota[MAX_NOTAS];
     float media;
-} aluno[3];
+} aluno[MAX_ALUNOS];
 
 int main() {
 
@@ -16,9 +18,11 @@ int main() {
     int j;
     float somaNota;
 
-    char vNome[3][20];
-    float vMedia[3];
+	// arrays
+    char vNome[MAX_ALUNOS][20];
+    float vMedia[MAX_ALUNOS];
 
+	// temps
     char nomeTemp[20];
     float mediaTemp;
 
@@ -30,22 +34,16 @@ int main() {
     printf("\n");
 
     i = 0;  /* aluno */
-    while ( i < 3 ) {
-
+    while ( i < MAX_ALUNOS ) {
         printf("Informe o nome do %dº aluno: ", i+1);
         scanf("%s", &aluno[i].nome);
-
         j = 0;  /* nota */
-        while ( j < 4 ) {
-
+        while ( j < MAX_NOTAS ) {
             printf("Informe a %dª nota: ", j+1);
             scanf("%f", &aluno[i].nota[j]);
-
             j++;
         }
-
         printf("\n");
-
         i++;
     }
 
@@ -54,19 +52,14 @@ int main() {
     /* médias */
 
     i = 0;  /* aluno */
-    while ( i < 3 ) {
-
+    while ( i < MAX_ALUNOS ) {
         somaNota = 0;
         j = 0;  /* nota */
-        while ( j < 4 ) {
-
+        while ( j < MAX_NOTAS ) {
             somaNota += aluno[i].nota[j];
-
             j++;
         }
-
         aluno[i].media = somaNota/j;
-
         i++;
    }
 
@@ -75,25 +68,19 @@ int main() {
    /* preenche vetores */
 
    i = 0;   /* aluno */
-   while ( i < 3 ) {
-
+   while ( i < MAX_ALUNOS ) {
         strcpy(vNome[i], aluno[i].nome);
         vMedia[i] = aluno[i].media;
-
     i++;
-
    }
 
     /* método bolha */
 
     i = 0;
-    while ( i < 3 - 1 ) {
-
+    while ( i < MAX_ALUNOS - 1 ) {
         j = 0;
-        while ( j < 3 - 1 - i ) {
-
+        while ( j < MAX_ALUNOS - 1 - i ) {
             if ( vMedia[j] < vMedia[j+1] ) {
-
                 strcpy(nomeTemp,vNome[j]);
                 strcpy(vNome[j], vNome[j+1]);
                 strcpy(vNome[j+1], nomeTemp);
@@ -101,12 +88,9 @@ int main() {
                 mediaTemp = vMedia[j];
                 vMedia[j] = vMedia[j+1];
                 vMedia[j+1] = mediaTemp;
-
             }
-
             j++;
         }
-
         i++;
     }
 
@@ -116,31 +100,30 @@ int main() {
 
     printf("*** Médias ***\n");
 
-    printf("\n");
+    putchar('\n');
 
     i = 0;  /* aluno */
-    while ( i < 3 ) {
-
+    while ( i < MAX_ALUNOS ) {
         printf("%s: \t %.1f\n", aluno[i].nome, aluno[i].media);
-
         i++;
     }
 
-    printf("\n");
+    putchar('\n');
 
     /* classificação */
 
     printf("*** Classificação geral ***\n");
 
-    printf("\n");
+    putchar('\n');
 
     i = 0;
-    while ( i < 3 ) {
-
+    while ( i < MAX_ALUNOS ) {
         printf("%dº lugar: %s \t Média: %.1f\n", i+1, vNome[i], vMedia[i]);
-
         i++;
     }
 
+	system("pause");
+
     return 0;
 }
+
